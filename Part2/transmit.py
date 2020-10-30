@@ -23,7 +23,8 @@ def generateSin(freq, time, fs):
 def normalizeArray(arr):
     # https://stackoverflow.com/questions/1735025/how-to-normalize-a-numpy-array-to-within-a-certain-range
     # Normalize between [-1,1]
-    return 2.*(arr - np.min(arr))/np.ptp(arr)-1
+    a = max(abs(arr))
+    return arr/a
 
 def LPF(signal, cutoff_hz, fs):
         from scipy import signal as sg
@@ -44,10 +45,10 @@ def modulateSignal(signal, fs):
 
     return signal * carrier
 
-playRec = False
-playNormalized = False
-playFiltered = False
-playModulated = False
+playRec = True
+playNormalized = True
+playFiltered = True
+playModulated = True
 playDemodulated = True
 
 data, fs = sf.read("Part2/data/recording.wav")
